@@ -130,7 +130,7 @@ class Cano:
 
         #boleana de colisao
         topo_ponto = passaro_mask.overlap(topo_mask, distancia_topo)
-        base_ponto = passaro_mask.overlap (base_mask, distancia_base)
+        base_ponto = passaro_mask.overlap(base_mask, distancia_base)
 
         if base_ponto or topo_ponto:
             return True
@@ -138,10 +138,25 @@ class Cano:
             return False
 
 
-
-
-
-
-
 class Chao:
-    pass
+    VELOCIDADE = 5
+    LARGURA = IMAGEM_CHAO.get_width()
+    IMAGEM = IMAGEM_CHAO
+
+    def __init__(self, y):
+        self.y = y
+        self.x1 = 0
+        self.x2 = self.LARGURA
+
+    def mover(self):
+        self.x1 -= self.VELOCIDADE
+        self.x2 -= self.VELOCIDADE
+
+        if self.x1 + self.LARGURA < 0:
+            self.x1 = self.LARGURA
+        if self.x2 + self.LARGURA < 0:
+            self.x2 + self.LARGURA
+
+    def desenhar(self, tela):
+        tela.blit(self.IMAGEM, (self.x1, self.y))
+        tela.blit(self.IMAGEM, (self.x2, self.y))
