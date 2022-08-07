@@ -187,9 +187,11 @@ def main():
 
     rodando = True
 
-    # interaçao com usuário
+
     while rodando:
         relogio.tick(30)
+
+        #interação com o usuário
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 rodando = False
@@ -219,15 +221,15 @@ def main():
             if cano.x + cano.CANO_TOPO.get_width() < 0:
                 remover_canos.append(cano)
 
-            if adicionar_cano:
-                pontos += 1
-                canos.append(Cano(600))
-            for cano in remover_canos:
-                canos.remove(cano)
+        if adicionar_cano:
+            pontos += 1
+            canos.append(Cano(600))
+        for cano in remover_canos:
+            canos.remove(cano)
 
-            for i, passaro in enumerate(passaros):
-                if (passaro.y + passaro.imagem.get_height()) > chao.y or passaro.y < 0:
-                    passaros.pop(i)
+        for i, passaro in enumerate(passaros):
+            if (passaro.y + passaro.imagem.get_height()) > chao.y or passaro.y < 0:
+                passaros.pop(i)
 
         desenhar_tela(tela, passaros, canos, chao, pontos)
 
